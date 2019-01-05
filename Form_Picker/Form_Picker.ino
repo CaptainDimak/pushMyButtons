@@ -96,21 +96,17 @@ void loop() {
   if (button1.fell() || button2.fell() || button3.fell() || button4.fell() || button5.fell() || button6.fell()) {
     digitalWrite(LED_PIN, HIGH);
     if (!pressed) {
-      //Keyboard.press(KEY_TILDE); // for keypress debug
+      Keyboard.press(KEY_TILDE); // for keypress debug
       pressed = true;
     }
   }
-  else {
+  else if (button1.rose() || button2.rose() || button3.rose() || button4.rose() || button5.rose() || button6.rose()) {
     digitalWrite(LED_PIN, LOW);
     if (pressed) {
-      //Keyboard.release(KEY_TILDE); // for keypress debug
+      Keyboard.release(KEY_TILDE); // for keypress debug
       pressed = false;
     }
   }
 
-  // Prevent some edge case double presses that sneak past bounce2 (I think they're in USB) (oh well)
-  delay(someMilliseconds);
-
 }
-
 
