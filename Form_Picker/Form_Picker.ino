@@ -33,38 +33,45 @@ Bounce button3 = Bounce();
 Bounce button4 = Bounce();
 Bounce button5 = Bounce();
 
-// Setup press status boolean
-bool pressed = false;
+// Setup press status booleans
+
+bool pressed = false; // uncomment for testing
+bool pressed0 = false;
+bool pressed1 = false;
+bool pressed2 = false;
+bool pressed3 = false;
+bool pressed4 = false;
+bool pressed5 = false;
 
 // Define length of button bounce interval
-int someMilliseconds = 20;
+int bounceInterval = 20;
 
 void setup() {
 
   // Setup the buttons with an internal pull-up
   pinMode(BUTTON_PIN_0, INPUT_PULLUP);
   button0.attach(BUTTON_PIN_0); // setup the Bounce instance
-  button0.interval(someMilliseconds); // interval in ms
+  button0.interval(bounceInterval); // interval in ms
 
   pinMode(BUTTON_PIN_1, INPUT_PULLUP);
   button1.attach(BUTTON_PIN_1); // setup the Bounce instance
-  button1.interval(someMilliseconds); // interval in ms
+  button1.interval(bounceInterval); // interval in ms
 
   pinMode(BUTTON_PIN_2, INPUT_PULLUP);
   button2.attach(BUTTON_PIN_2); // setup the Bounce instance
-  button2.interval(someMilliseconds); // interval in ms
+  button2.interval(bounceInterval); // interval in ms
 
   pinMode(BUTTON_PIN_3, INPUT_PULLUP);
   button3.attach(BUTTON_PIN_3); // setup the Bounce instance
-  button3.interval(someMilliseconds); // interval in ms
+  button3.interval(bounceInterval); // interval in ms
 
   pinMode(BUTTON_PIN_4, INPUT_PULLUP);
   button4.attach(BUTTON_PIN_4); // setup the Bounce instance
-  button4.interval(someMilliseconds); // interval in ms
+  button4.interval(bounceInterval); // interval in ms
 
   pinMode(BUTTON_PIN_5, INPUT_PULLUP);
   button5.attach(BUTTON_PIN_5); // setup the Bounce instance
-  button5.interval(someMilliseconds); // interval in ms
+  button5.interval(bounceInterval); // interval in ms
 
   // Setup the LED:
   pinMode(LED_PIN, OUTPUT);
@@ -90,17 +97,19 @@ void loop() {
   int value5 = button2.read();
 
   // Turn on the LED if any button is pressed
-  if (button0.fell() ||button1.fell() || button2.fell() || button3.fell() || button4.fell() || button5.fell()) {
+  if (button0.fell() || button1.fell() || button2.fell() || button3.fell() || button4.fell() || button5.fell()) {
     digitalWrite(LED_PIN, HIGH);
     if (!pressed) {
-      //Keyboard.press(KEY_TILDE); // for keypress debug
+      Keyboard.set_modifier(MODIFIERKEY_CTRL | MODIFIERKEY_SHIFT);
+      Keyboard.press(KEY_1);
       pressed = true;
     }
   }
-  else if (button0.rose() ||button1.rose() || button2.rose() || button3.rose() || button4.rose() || button5.rose()) {
+  else if (button0.rose() || button1.rose() || button2.rose() || button3.rose() || button4.rose() || button5.rose()) {
     digitalWrite(LED_PIN, LOW);
     if (pressed) {
-      //Keyboard.release(KEY_TILDE); // for keypress debug
+      Keyboard.set_modifier(0);
+      Keyboard.release(KEY_1); // for keypress debug
       pressed = false;
     }
   }
