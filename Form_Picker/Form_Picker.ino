@@ -43,8 +43,8 @@ void setup() {
 
   // Setup the buttons with an internal pull-up
   pinMode(BUTTON_PIN_0, INPUT_PULLUP);
-  button1.attach(BUTTON_PIN_0); // setup the Bounce instance
-  button1.interval(someMilliseconds); // interval in ms
+  button0.attach(BUTTON_PIN_0); // setup the Bounce instance
+  button0.interval(someMilliseconds); // interval in ms
 
   pinMode(BUTTON_PIN_1, INPUT_PULLUP);
   button1.attach(BUTTON_PIN_1); // setup the Bounce instance
@@ -55,16 +55,16 @@ void setup() {
   button2.interval(someMilliseconds); // interval in ms
 
   pinMode(BUTTON_PIN_3, INPUT_PULLUP);
-  button2.attach(BUTTON_PIN_3); // setup the Bounce instance
-  button2.interval(someMilliseconds); // interval in ms
+  button3.attach(BUTTON_PIN_3); // setup the Bounce instance
+  button3.interval(someMilliseconds); // interval in ms
 
   pinMode(BUTTON_PIN_4, INPUT_PULLUP);
-  button2.attach(BUTTON_PIN_4); // setup the Bounce instance
-  button2.interval(someMilliseconds); // interval in ms
+  button4.attach(BUTTON_PIN_4); // setup the Bounce instance
+  button4.interval(someMilliseconds); // interval in ms
 
   pinMode(BUTTON_PIN_5, INPUT_PULLUP);
-  button2.attach(BUTTON_PIN_5); // setup the Bounce instance
-  button2.interval(someMilliseconds); // interval in ms
+  button5.attach(BUTTON_PIN_5); // setup the Bounce instance
+  button5.interval(someMilliseconds); // interval in ms
 
   // Setup the LED:
   pinMode(LED_PIN, OUTPUT);
@@ -93,14 +93,14 @@ void loop() {
   if (button0.fell() ||button1.fell() || button2.fell() || button3.fell() || button4.fell() || button5.fell()) {
     digitalWrite(LED_PIN, HIGH);
     if (!pressed) {
-      Keyboard.press(KEY_TILDE); // for keypress debug
+      //Keyboard.press(KEY_TILDE); // for keypress debug
       pressed = true;
     }
   }
   else if (button0.rose() ||button1.rose() || button2.rose() || button3.rose() || button4.rose() || button5.rose()) {
     digitalWrite(LED_PIN, LOW);
     if (pressed) {
-      Keyboard.release(KEY_TILDE); // for keypress debug
+      //Keyboard.release(KEY_TILDE); // for keypress debug
       pressed = false;
     }
   }
