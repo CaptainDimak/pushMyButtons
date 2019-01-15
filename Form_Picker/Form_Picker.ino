@@ -15,14 +15,14 @@
 #define BUTTON_PIN_5 5
 
 /* Physical button layout reference:
- * ┏━━━━━━━━┓
- * ┃ 0 2 4 ┃
- * ┃ 1 3 5 ┃
- * ┗━━━━━━━━┛
- * 
- * Buttons that are pressed are CTRL-SHIFT-KEYPAD#, with # being 0 to 5.
- * 
- */
+   ┏━━━━━━━━┓
+   ┃ 0 2 4 ┃
+   ┃ 1 3 5 ┃
+   ┗━━━━━━━━┛
+
+   Buttons that are pressed are CTRL-SHIFT-KEYPAD#, with # being 0 to 5.
+
+*/
 
 // Define LED pin, 13 for Teensy LC
 #define LED_PIN 13
@@ -95,26 +95,80 @@ void loop() {
   int value0 = button0.read();
   int value1 = button1.read();
   int value2 = button2.read();
-  int value3 = button2.read();
-  int value4 = button2.read();
-  int value5 = button2.read();
+  int value3 = button3.read();
+  int value4 = button4.read();
+  int value5 = button5.read();
 
-  // Turn on the LED if any button is pressed
-  if (button0.fell() || button1.fell() || button2.fell() || button3.fell() || button4.fell() || button5.fell()) {
-    digitalWrite(LED_PIN, HIGH);
-    if (!pressed) {
-      Keyboard.set_modifier(MODIFIERKEY_CTRL | MODIFIERKEY_SHIFT);
-      Keyboard.press(KEYPAD_1);
-      pressed = true;
-    }
+  // Check if a specific button is pressed, and press keys on keyboard
+  if (button0.fell() && !pressed0) {
+    Keyboard.set_modifier(MODIFIERKEY_ALT | MODIFIERKEY_SHIFT);
+    Keyboard.press(KEY_0);
+    pressed0 = true;
+  } else if (button1.fell() && !pressed1) {
+    Keyboard.set_modifier(MODIFIERKEY_ALT | MODIFIERKEY_SHIFT);
+    Keyboard.press(KEY_1);
+    pressed1 = true;
+  } else if (button2.fell() && !pressed2) {
+    Keyboard.set_modifier(MODIFIERKEY_ALT | MODIFIERKEY_SHIFT);
+    Keyboard.press(KEY_2);
+    pressed2 = true;
+  } else if (button3.fell() && !pressed3) {
+    Keyboard.set_modifier(MODIFIERKEY_ALT | MODIFIERKEY_SHIFT);
+    Keyboard.press(KEY_3);
+    pressed3 = true;
+  } else if (button4.fell() && !pressed4) {
+    Keyboard.set_modifier(MODIFIERKEY_ALT | MODIFIERKEY_SHIFT);
+    Keyboard.press(KEY_4);
+    pressed4 = true;
+  } else if (button5.fell() && !pressed5) {
+    Keyboard.set_modifier(MODIFIERKEY_ALT | MODIFIERKEY_SHIFT);
+    Keyboard.press(KEY_5);
+    pressed5 = true;
+
+  // Check if buttons have been released, and release buttons on keyboard
+  } else if (button0.rose() && pressed0) {
+    Keyboard.set_modifier(0);
+    Keyboard.release(KEY_0);
+    pressed0 = false;
+  } else if (button1.rose() && pressed1) {
+    Keyboard.set_modifier(0);
+    Keyboard.release(KEY_1);
+    pressed1 = false;
+  } else if (button2.rose() && pressed2) {
+    Keyboard.set_modifier(0);
+    Keyboard.release(KEY_2);
+    pressed2 = false;
+  } else if (button3.rose() && pressed3) {
+    Keyboard.set_modifier(0);
+    Keyboard.release(KEY_3);
+    pressed3 = false;
+  } else if (button4.rose() && pressed4) {
+    Keyboard.set_modifier(0);
+    Keyboard.release(KEY_4);
+    pressed4 = false;
+  } else if (button5.rose() && pressed5) {
+    Keyboard.set_modifier(0);
+    Keyboard.release(KEY_5);
+    pressed5 = false;
   }
-  else if (button0.rose() || button1.rose() || button2.rose() || button3.rose() || button4.rose() || button5.rose()) {
-    digitalWrite(LED_PIN, LOW);
-    if (pressed) {
-      Keyboard.set_modifier(0);
-      Keyboard.release(KEY_1); // for keypress debug
-      pressed = false;
+  /*
+    // Turn on the LED if any button is pressed
+    if (button0.fell() || button1.fell() || button2.fell() || button3.fell() || button4.fell() || button5.fell()) {
+      digitalWrite(LED_PIN, HIGH);
+      if (!pressed) {
+        Keyboard.set_modifier(MODIFIERKEY_CTRL | MODIFIERKEY_SHIFT);
+        Keyboard.press(KEYPAD_1);
+        pressed = true;
+      }
     }
-  }
+    else if (button0.rose() || button1.rose() || button2.rose() || button3.rose() || button4.rose() || button5.rose()) {
+      digitalWrite(LED_PIN, LOW);
+      if (pressed) {
+        Keyboard.set_modifier(0);
+        Keyboard.release(KEY_1); // for keypress debug
+        pressed = false;
+      }
+    }
+  */
 
 }
