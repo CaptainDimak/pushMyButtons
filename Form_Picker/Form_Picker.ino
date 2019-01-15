@@ -20,7 +20,7 @@
  * ┃ 1 3 5 ┃
  * ┗━━━━━━━━┛
  * 
- * Buttons that are pressed are CTRL-SHIFT-KEYPAD#, with # being 0 through 5.
+ * Buttons that are pressed are CTRL-SHIFT-KEYPAD#, with # being 0 to 5.
  * 
  */
 
