@@ -90,14 +90,14 @@ void loop() {
   int value5 = button2.read();
 
   // Turn on the LED if any button is pressed
-  if (button1.fell() || button2.fell() || button3.fell() || button4.fell() || button5.fell() || button6.fell()) {
+  if (button0.fell() ||button1.fell() || button2.fell() || button3.fell() || button4.fell() || button5.fell()) {
     digitalWrite(LED_PIN, HIGH);
     if (!pressed) {
       Keyboard.press(KEY_TILDE); // for keypress debug
       pressed = true;
     }
   }
-  else if (button1.rose() || button2.rose() || button3.rose() || button4.rose() || button5.rose() || button6.rose()) {
+  else if (button0.rose() ||button1.rose() || button2.rose() || button3.rose() || button4.rose() || button5.rose()) {
     digitalWrite(LED_PIN, LOW);
     if (pressed) {
       Keyboard.release(KEY_TILDE); // for keypress debug
