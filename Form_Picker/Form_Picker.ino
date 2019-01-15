@@ -1,12 +1,11 @@
 // Code to trigger properly debounced key presses over USB.
 // USB type must be set to Keyboard.
 
-// Include the Bounce2 library found here:
+// Include the Bounce2 library found here
 // https://github.com/thomasfredericks/Bounce2
 #include <Bounce2.h>
 
-// Set button pins for use later, diagram of how wiring matches in box included.
-
+// Setup button pins
 #define BUTTON_PIN_0 0
 #define BUTTON_PIN_1 1
 #define BUTTON_PIN_2 2
@@ -14,7 +13,7 @@
 #define BUTTON_PIN_4 4
 #define BUTTON_PIN_5 5
 
-/* Physical button layout reference:
+/* Physical button layout reference
    ┏━━━━━━━━┓
    ┃ 0 2 4 ┃
    ┃ 1 3 5 ┃
@@ -28,7 +27,6 @@
 #define LED_PIN 13
 
 // Instantiate Bounce objects for buttons
-
 Bounce button0 = Bounce();
 Bounce button1 = Bounce();
 Bounce button2 = Bounce();
@@ -37,7 +35,6 @@ Bounce button4 = Bounce();
 Bounce button5 = Bounce();
 
 // Setup press status booleans
-
 bool pressed = false; // uncomment for testing
 bool pressed0 = false;
 bool pressed1 = false;
@@ -76,14 +73,14 @@ void setup() {
   button5.attach(BUTTON_PIN_5); // setup the Bounce instance
   button5.interval(bounceInterval); // interval in ms
 
-  // Setup the LED:
+  // Setup the LED
   pinMode(LED_PIN, OUTPUT);
 
 }
 
 void loop() {
-  // Update the Bounce instances
 
+  // Update the Bounce instances
   button0.update();
   button1.update();
   button2.update();
@@ -151,24 +148,5 @@ void loop() {
     Keyboard.release(KEY_5);
     pressed5 = false;
   }
-  /*
-    // Turn on the LED if any button is pressed
-    if (button0.fell() || button1.fell() || button2.fell() || button3.fell() || button4.fell() || button5.fell()) {
-      digitalWrite(LED_PIN, HIGH);
-      if (!pressed) {
-        Keyboard.set_modifier(MODIFIERKEY_CTRL | MODIFIERKEY_SHIFT);
-        Keyboard.press(KEYPAD_1);
-        pressed = true;
-      }
-    }
-    else if (button0.rose() || button1.rose() || button2.rose() || button3.rose() || button4.rose() || button5.rose()) {
-      digitalWrite(LED_PIN, LOW);
-      if (pressed) {
-        Keyboard.set_modifier(0);
-        Keyboard.release(KEY_1); // for keypress debug
-        pressed = false;
-      }
-    }
-  */
 
 }
