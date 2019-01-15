@@ -19,6 +19,9 @@
  * ┃ 0 2 4 ┃
  * ┃ 1 3 5 ┃
  * ┗━━━━━━━━┛
+ * 
+ * Buttons that are pressed are CTRL-SHIFT-KEYPAD#, with # being 0 through 5.
+ * 
  */
 
 // Define LED pin, 13 for Teensy LC
@@ -101,7 +104,7 @@ void loop() {
     digitalWrite(LED_PIN, HIGH);
     if (!pressed) {
       Keyboard.set_modifier(MODIFIERKEY_CTRL | MODIFIERKEY_SHIFT);
-      Keyboard.press(KEY_1);
+      Keyboard.press(KEYPAD_1);
       pressed = true;
     }
   }
